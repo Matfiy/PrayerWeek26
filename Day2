@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day Two - Prayer Week</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,900&family=Montserrat:wght@300;400;700&family=Oswald:wght@500&display=swap" rel="stylesheet">
+
+    <style>
+        /* ---css reset & variables--- */
+        :root {
+            --accent-yellow: #FFEA00;
+            --text-white: #FFFFFF;
+            --text-grey: #cccccc;
+            --bg-dark: #0d110f;
+            --font-serif: 'Oswald', serif;
+            --font-sans: 'Montserrat', sans-serif;
+            --font-condensed: 'Oswald', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: var(--font-sans);
+            background-color: var(--bg-dark);
+            color: var(--text-white);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ---hero section--- */
+        .hero {
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            background-image: url('https://tithely-media-prod.s3.us-west-1.wasabisys.com/1094026/Day-2-Background.png');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(18, 28, 22, 0.4), rgba(13, 17, 15, 1));
+            z-index: 1;
+        }
+
+        .logo,
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo {
+            position: absolute;
+            top: 30px;
+            left: 20px;
+            font-family: var(--font-condensed);
+            color: var(--accent-yellow);
+            font-size: 1.2rem;
+            line-height: 1;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-align: left;
+        }
+
+        .subtitle-top {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: -5px;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+
+        .main-title {
+            font-family: var(--font-serif);
+            font-size: 22vw;
+            line-height: 0.85;
+            color: var(--accent-yellow);
+            margin: 10px 0;
+            text-transform: uppercase;
+            font-weight: 900;
+            text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .subtitle-bottom {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 15px;
+            font-weight: 300;
+            opacity: 0.85;
+            max-width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ---buttons--- */
+        .lang-controls {
+            margin-top: 40px;
+            display: flex;
+            flex-wrap: wrap;
+            /* Allows wrapping */
+            gap: 15px;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-lang {
+            background: transparent;
+            border: 1px solid var(--accent-yellow);
+            color: var(--accent-yellow);
+            padding: 12px 24px;
+            font-family: var(--font-condensed);
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex: 1;
+            min-width: 120px;
+        }
+
+        /* ---bottom button--- */
+        .btn-full {
+            flex-basis: 100%;
+        }
+
+        .btn-lang:active {
+            background: var(--accent-yellow);
+            color: #000;
+        }
+
+        /* ---content section--- */
+        .content-section {
+            padding: 40px 20px 80px 20px;
+            background-color: var(--bg-dark);
+            min-height: 60vh;
+        }
+
+        .topic {
+            margin-bottom: 50px;
+        }
+
+        .topic-title {
+            font-family: var(--font-serif);
+            color: var(--accent-yellow);
+            font-size: 2rem;
+            margin-bottom: 15px;
+            margin-top: 0;
+            line-height: 1.1;
+        }
+
+        .topic-desc {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            font-weight: 400;
+            color: #ddd;
+        }
+
+        .refs {
+            color: #999;
+            font-size: 0.9em;
+            display: block;
+            margin-top: 5px;
+        }
+
+        .verse-block {
+            border-left: 3px solid var(--accent-yellow);
+            padding-left: 15px;
+            margin-bottom: 35px;
+        }
+
+        .scripture {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 1.15rem;
+            line-height: 1.5;
+            margin: 0 0 12px 0;
+            color: #ececec;
+        }
+
+        .citation {
+            font-family: var(--font-condensed);
+            font-size: 0.85rem;
+            color: var(--accent-yellow);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .divider {
+            border: 0;
+            height: 1px;
+            background: #333;
+            margin: 40px 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <section class="hero">
+        <div class="overlay"></div>
+
+        <div class="logo">
+            PRAYER<br>WEEK
+        </div>
+
+        <div class="hero-content">
+            <p class="subtitle-top">МОЛИТВА ПРО СЕБЕ</p>
+            <h1 class="main-title">DAY<br>TWO</h1>
+            <p class="subtitle-bottom">Я І МОЯ СІМ'Я, СЛУЖІННЯ ТА РОБОТА</p>
+
+            <div class="lang-controls">
+                <button class="btn-lang" onclick="switchTab('ua')">УКРАЇНСЬКА</button>
+                <button class="btn-lang" onclick="switchTab('en')">ENGLISH</button>
+                <button class="btn-lang btn-full" onclick="switchTab('psalm')">ЩОДЕННИЙ ПСАЛОМ / DAILY PSALM</button>
+            </div>
+        </div>
+    </section>
+
+    <div id="content-psalm" class="content-section">
+        <div class="topic">
+            <h2 class="topic-title">ПСАЛМИ 119(118):33-64</h2>
+            <div class="verse-block">
+                <p class="scripture">"'Направ мене, Господи , на дорогу Твоїх постанов, і я буду дотримуватись їх до кінця. Пошли мені розуміння, як виконувати Твій Закон, і я буду дотримуватись його всім серцем. Провадь мене стежкою Твоїх Заповідей, бо в цьому моє задоволення. Нахили моє серце до Твоїх свідчень, а не до користолюбства. Відверни мої очі, аби не дивитись на суєту. Оживляй мене на Своїй дорозі. Виконай Свою обітницю Твоєму слузі, що навчає страху перед Тобою. Відверни від мене ганьбу мою, якої я боюся, адже Твої присуди вірні. О, як я прагну дотримуватись Твоїх Заповідей! Задля Своєї справедливості оживи мене. Нехай зіллється на мене, Господи , Твоя любов і Твоє спасіння за словом Твоїм! Тоді я зможу відповісти тим, котрі мене ганьблять, бо я виявляю довір’я Твоєму слову. Лише ніколи не віднімай від моїх уст слова правди, бо я покладаю надію на Твої присуди! Завжди, по віки вічні, буду дотримуватись Твого Закону! Я відчуватиму вільний простір, бо шукав і віднайшов Твої Заповіді. Я говоритиму про Твої свідчення перед царями і не засоромлюсь. Я знаходитиму задоволення в Твоїх Заповідях, бо я полюбив їх. Я здіймаю свої руки до Твоїх Заповідей, які люблю, і буду роздумувати про Твої постанови! Пам’ятай про слово до Свого слуги, яким Ти вселив у мене надію. Твоє слово мене оживляє і потішає в моїй недолі. Зарозумілі знахабніло кепкують з мене, але я не ухиляюсь від Твого Закону. Я згадую Твої одвічні присуди, Господи , і радію. Обурення охоплює мене через нечестивих, котрі відступають від Твого Закону. Твої постанови були для мене піснею скрізь, куди б я не мандрував. Навіть уночі згадую Твоє Ім’я, Господи , і милуюсь Твоїм Законом! Дотримуватись Твоїх постанов стало для мене звичкою. Ти, Господи , – моя Доля, тому я вирішив жити за Твоїм словом! Від усього серця я благаю Тебе в молитві: Будь милостивим до мене за Своєю обітницею! Я переосмислив свій життєвий шлях, і спрямовую свої кроки до Твоїх свідчень. Я спішу й не барюся виконувати Твої Заповіді! Хоч я обплутаний тенетами нечестивих, але Твого Закону не забуваю. Опівночі я підіймаюся, щоб подякувати Тобі за Твої справедливі присуди. Я – друг усіх тих, котрі шанують Тебе і дотримуються Твоїх Заповідей. Земля, Господи, повна Твого милосердя, – навчай мене Своїм постановам!"</p>
+                <p class="citation">ПСАЛМИ 119(118):33-64 CUV</p>
+            </div>
+        </div>
+
+        <div class="topic">
+            <h2 class="topic-title">Psalm 199:33-64</h2>
+            <div class="verse-block">
+                <p class="scripture">"Teach me, O Lord , the way of your statutes; and I will keep it to the end. Give me understanding, that I may keep your law and observe it with my whole heart. Lead me in the path of your commandments, for I delight in it. Incline my heart to your testimonies, and not to selfish gain! Turn my eyes from looking at worthless things; and give me life in your ways. Confirm to your servant your promise, that you may be feared. Turn away the reproach that I dread, for your rules are good. Behold, I long for your precepts; in your righteousness give me life! Let your steadfast love come to me, O Lord , your salvation according to your promise; then shall I have an answer for him who taunts me, for I trust in your word. And take not the word of truth utterly out of my mouth, for my hope is in your rules. I will keep your law continually, forever and ever, and I shall walk in a wide place, for I have sought your precepts. I will also speak of your testimonies before kings and shall not be put to shame, for I find my delight in your commandments, which I love. I will lift up my hands toward your commandments, which I love, and I will meditate on your statutes. Remember your word to your servant, in which you have made me hope. This is my comfort in my affliction, that your promise gives me life. The insolent utterly deride me, but I do not turn away from your law. When I think of your rules from of old, I take comfort, O Lord . Hot indignation seizes me because of the wicked, who forsake your law. Your statutes have been my songs in the house of my sojourning. I remember your name in the night, O Lord , and keep your law. This blessing has fallen to me, that I have kept your precepts. The Lord is my portion; I promise to keep your words. I entreat your favor with all my heart; be gracious to me according to your promise. When I think on my ways, I turn my feet to your testimonies; I hasten and do not delay to keep your commandments. Though the cords of the wicked ensnare me, I do not forget your law. At midnight I rise to praise you, because of your righteous rules. I am a companion of all who fear you, of those who keep your precepts. The earth, O Lord , is full of your steadfast love; teach me your statutes!"</p>
+                <p class="citation">Psalm 119:33-64 ESV</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="content-ua" class="content-section" style="display:none;">
+
+        <div class="topic">
+            <h2 class="topic-title">Я і моя сім'я</h2>
+            <p class="topic-desc">Молитва одружених про відповідність Богом даної ролі і про чоловіка/дружину (самотні про майбутніх), про дітей, батьків, інших рідних: про їхній мир з Богом і добробут. <span class="refs">(Еф. 5,22-29; 1 Тим. 5,8)</span></p>
+
+            <div class="verse-block">
+                <p class="scripture">«Дружини, [коріться] своїм чоловікам, як Господу, адже чоловік є голова дружини, як Христос – Голова Церкви, Він же – Спаситель тіла. Як Церква кориться Христові, так і дружини – чоловікам у всьому. Чоловіки, любіть [своїх] дружин, як Христос полюбив Церкву й віддав Себе за неї, щоб її освятити, очистивши купіллю води в слові, щоби поставити її Собі славною Церквою, яка не має ні плями, ні вади, і нічого такого подібного, але щоб вона була свята й непорочна. Так і чоловіки повинні любити своїх дружин, як власні тіла. Хто любить свою дружину, той і себе любить. Адже ніхто ніколи свого тіла не зненавидів, але годує і гріє його, як і Христос Церкву,»</p>
+                <p class="citation">ЕФЕСЯН 5:22-29 CUV</p>
+            </div>
+
+            <div class="verse-block">
+                <p class="scripture">«Якщо хто про своїх, а найбільше про домашніх, не дбає, той зрікся віри і є ще гірший від невірного.»</p>
+                <p class="citation">1 ТИМОФІЯ 5:8 CUV</p>
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <div class="topic">
+            <h2 class="topic-title">Я і моє служіння</h2>
+            <p class="topic-desc">Молитва про ефективність у служінні своїми дарами іншим. <span class="refs">(1 Пт. 4:10-11)</span></p>
+
+            <div class="verse-block">
+                <p class="scripture">«Служіть один одному – кожний тим даром, якого одержав, наче добрі управителі різноманітної Божої благодаті. Коли хто говорить, – нехай говорить, як Божі слова; коли хто служить, – нехай служить, наче з сили, яку дає йому Бог, щоб у всьому прославлявся Бог через Ісуса Христа, Якому слава і влада навіки‑віків! Амінь.»</p>
+                <p class="citation">1 ПЕТРА 4:10-11 CUV</p>
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <div class="topic">
+            <h2 class="topic-title">Я і моя робота/бізнес</h2>
+            <p class="topic-desc">Молитва про мудрість в управлінні власними ресурсами (час, здоровʼя, знання і вміння), про ефективність у роботі і заробітку, про мудре управління фінансами і майном. <span class="refs">(Кол. 4,5; Еф. 4,28)</span></p>
+
+            <div class="verse-block">
+                <p class="scripture">«Поводьтеся мудро із зовнішніми, використовуючи час.»</p>
+                <p class="citation">КОЛОСЯН 4:5 CUV</p>
+            </div>
+
+            <div class="verse-block">
+                <p class="scripture">«Хто крав, хай більше не краде, але краще нехай працює, роблячи своїми руками добро, аби мав що подати тому, хто має потребу.»</p>
+                <p class="citation">ЕФЕСЯН 4:28 CUV</p>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="content-en" class="content-section" style="display:none;">
+        <div class="topic">
+            <h2 class="topic-title">Me and my Family</h2>
+            <p class="topic-desc">Prayer of the married about fulfilling their God-given role and for their husband/wife (singles for their future ones), for children, parents, other relatives: for their peace with God and well-being.</p>
+
+            <div class="verse-block">
+                <p class="scripture">"Wives, submit to your own husbands, as to the Lord. For the husband is the head of the wife even as Christ is the head of the church, his body, and is himself its Savior. Now as the church submits to Christ, so also wives should submit in everything to their husbands. Husbands, love your wives, as Christ loved the church and gave himself up for her, that he might sanctify her, having cleansed her by the washing of water with the word, so that he might present the church to himself in splendor, without spot or wrinkle or any such thing, that she might be holy and without blemish. In the same way husbands should love their wives as their own bodies. He who loves his wife loves himself. For no one ever hated his own flesh, but nourishes and cherishes it, just as Christ does the church,"</p>
+                <p class="citation">Ephesians 5:22-29 ESV</p>
+            </div>
+
+            <div class="verse-block">
+                <p class="scripture">"But if anyone does not provide for his relatives, and especially for members of his household, he has denied the faith and is worse than an unbeliever."</p>
+                <p class="citation">1 Timothy 5:8 ESV</p>
+            </div>
+
+            <hr class="divider">
+
+            <h2 class="topic-title">Me and my Ministry</h2>
+            <p class="topic-desc">Prayer for effectiveness in serving others with one's gifts.</p>
+
+            <div class="verse-block">
+                <p class="scripture">"As each has received a gift, use it to serve one another, as good stewards of God’s varied grace: whoever speaks, as one who speaks oracles of God; whoever serves, as one who serves by the strength that God supplies—in order that in everything God may be glorified through Jesus Christ. To him belong glory and dominion forever and ever. Amen."</p>
+                <p class="citation">1 Peter 4:10-11 ESV</p>
+            </div>
+
+            <hr class="divider">
+
+            <h2 class="topic-title">Me and my Job/Business</h2>
+            <p class="topic-desc">Prayer for wisdom in managing one's own resources (time, health, knowledge and skills), for effectiveness in work and earning, for wise management of finances and property.</p>
+
+            <div class="verse-block">
+                <p class="scripture">"Walk in wisdom toward outsiders, making the best use of the time."</p>
+                <p class="citation">Colossians 4:5 ESV</p>
+            </div>
+
+            <div class="verse-block">
+                <p class="scripture">"Let the thief no longer steal, but rather let him labor, doing honest work with his own hands, so that he may have something to share with anyone in need."</p>
+                <p class="citation">Ephesians 4:28 ESV</p>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function switchTab(selectedId) {
+            const sections = ['content-psalm', 'content-ua', 'content-en'];
+
+            sections.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    if (id === 'content-' + selectedId) {
+                        el.style.display = 'block';
+                        el.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    } else {
+                        el.style.display = 'none';
+                    }
+                }
+            });
+        }
+    </script>
+
+</body>
+
+</html>
