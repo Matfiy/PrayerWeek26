@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day One - Prayer Week</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,900&family=Montserrat:wght@300;400;700&family=Oswald:wght@500&display=swap" rel="stylesheet">
+
+    <style>
+        /* css reset & variables */
+        :root {
+            --accent-yellow: #FFEA00;
+            --text-white: #FFFFFF;
+            --text-grey: #cccccc;
+            --bg-dark: #0d110f;
+            --font-serif: 'Oswald', serif;
+            --font-sans: 'Montserrat', sans-serif;
+            --font-condensed: 'Oswald', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: var(--font-sans);
+            background-color: var(--bg-dark);
+            color: var(--text-white);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ---hero section--- */
+        .hero {
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            background-image: url('https://tithely-media-prod.s3.us-west-1.wasabisys.com/1094000/Day-1-Background.png');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(18, 28, 22, 0.4), rgba(13, 17, 15, 1));
+            z-index: 1;
+        }
+
+        .logo,
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo {
+            position: absolute;
+            top: 30px;
+            left: 20px;
+            font-family: var(--font-condensed);
+            color: var(--accent-yellow);
+            font-size: 1.2rem;
+            line-height: 1;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-align: left;
+        }
+
+        .subtitle-top {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: -5px;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+
+        .main-title {
+            font-family: var(--font-serif);
+            font-size: 22vw;
+            line-height: 0.85;
+            color: var(--accent-yellow);
+            margin: 10px 0;
+            text-transform: uppercase;
+            font-weight: 900;
+            text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .subtitle-bottom {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 15px;
+            font-weight: 300;
+            opacity: 0.85;
+            max-width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ---button controls--- */
+        .lang-controls {
+            margin-top: 40px;
+            display: flex;
+            flex-wrap: wrap;
+            /* Allows buttons to wrap to next line */
+            gap: 15px;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-lang {
+            background: transparent;
+            border: 1px solid var(--accent-yellow);
+            color: var(--accent-yellow);
+            padding: 12px 24px;
+            font-family: var(--font-condensed);
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex: 1;
+            /* Grow to fill space */
+            min-width: 120px;
+        }
+
+        /* ---bottom button (psalm)--- */
+        .btn-full {
+            flex-basis: 100%;
+        }
+
+        .btn-lang:active {
+            background: var(--accent-yellow);
+            color: #000;
+        }
+
+        /* ---content section--- */
+        .content-section {
+            padding: 40px 20px 80px 20px;
+            background-color: var(--bg-dark);
+            min-height: 60vh;
+        }
+
+        .topic {
+            margin-bottom: 50px;
+        }
+
+        .topic-title {
+            font-family: var(--font-serif);
+            color: var(--accent-yellow);
+            font-size: 2rem;
+            margin-bottom: 15px;
+            margin-top: 0;
+            line-height: 1.1;
+        }
+
+        .topic-desc {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            font-weight: 400;
+            color: #ddd;
+        }
+
+        .refs {
+            color: #999;
+            font-size: 0.9em;
+            display: block;
+            margin-top: 5px;
+        }
+
+        .verse-block {
+            border-left: 3px solid var(--accent-yellow);
+            padding-left: 15px;
+            margin-bottom: 35px;
+        }
+
+        .scripture {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 1.15rem;
+            line-height: 1.5;
+            margin: 0 0 12px 0;
+            color: #ececec;
+        }
+
+        .citation {
+            font-family: var(--font-condensed);
+            font-size: 0.85rem;
+            color: var(--accent-yellow);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .divider {
+            border: 0;
+            height: 1px;
+            background: #333;
+            margin: 40px 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <section class="hero">
+        <div class="overlay"></div>
+
+        <div class="logo">
+            PRAYER<br>WEEK
+        </div>
+
+        <div class="hero-content">
+            <p class="subtitle-top">МОЛИТВА ПРО СЕБЕ</p>
+            <h1 class="main-title">DAY<br>ONE</h1>
+            <p class="subtitle-bottom">Я І БОГ, МОЄ БОГОПІЗНАННЯ ТА МОЯ БОРОТЬБА</p>
+
+            <div class="lang-controls">
+                <button class="btn-lang" onclick="switchTab('ua')">УКРАЇНСЬКА</button>
+                <button class="btn-lang" onclick="switchTab('en')">ENGLISH</button>
+                <button class="btn-lang btn-full" onclick="switchTab('psalm')">ЩОДЕННИЙ ПСАЛОМ / DAILY PSALM</button>
+            </div>
+        </div>
+    </section>
+
+    <div id="content-psalm" class="content-section">
+        <div class="topic">
+            <h2 class="topic-title">Псалом 119(118):1-32</h2>
+            <div class="verse-block">
+                <p class="scripture">"Блаженні ті, чия дорога ( життя ) бездоганна, – котрі живуть за Господнім Законом! Блаженні ті, котрі дотримуються Його свідчень, і шукають Його всім серцем. Адже вони не чинять зла; вони ходять Його дорогами! Ти заповів ретельно дотримуватись Твоїх Заповідей. О, якби мої шляхи були спрямовані на те, щоб дотримуватися Твоїх настанов! Тоді мені не соромно було би дивитися на всі Твої Заповіді. Буду дякувати Тобі щирим серцем, осягаючи справедливість Твоїх присудів! Я буду дотримуватися Твоїх постанов, тільки не залишай мене! Як юнаку зберегти чистою свою дорогу життя? Лише дотриманням Твого слова! Усім своїм серцем шукаю Тебе, – не дай мені ухилитись від Твоїх Заповідей. Я бережу Твоє слово у своєму серці, щоби мені не грішити проти Тебе. Благословенний Ти, Господи ! Навчай мене Твоїх постанов. Своїми устами я звіщатиму всі вказівки Твої. Я радію дорогою Твоїх свідчень більше, ніж великим багатством. Я роздумую про Твої Заповіді й досліджую Твої шляхи. Я знаходжу задоволення в Твоїх постановах й не забуваю Твого слова. Вияви милість щодо Свого слуги, аби я міг жити й дотримуватися Твого слова! Відкрий мої очі, щоб я міг побачити дивовижні властивості Твого Закону! Я на землі мандрівник, – не ховай від мене Своїх Заповідей. Знемагає моя душа від постійної туги за пізнанням Твоїх присудів. Ти докорив усім проклятим і гордим, котрі ухиляються від Твоїх Заповідей. Зніми з мене ганьбу й зневагу, адже я дотримуюся Твоїх свідчень! Хоча можновладці засідають, змовляючись проти мене, але Твій слуга досліджує Твої постанови. Адже Твої свідчення приносять мені задоволення, – вони – мої радники. Моя душа кинута на землю, оживи мене за словом Своїм! Я розповів про свої шляхи ( долю свою ), і Ти мені відповів . Навчай мене Своїм постановам. Дай мені зрозуміти шлях, указаний в Твоїх постановах, аби я міг осягнути розумом Твої дивовижні діяння. Ниє від смутку моя душа; за словом Своїм зміцни мене! Відверни від мене дорогу неправди, із ласки своєї, навчи мене Закону Твого. Я обрав для себе дорогу правди й прийняв серцем Твої постанови. Я твердо тримаюсь Твоїх свідчень, Господи , не осором мене! Я побіжу дорогою Твоїх Заповідей, бо Ти даєш простір моєму серцю."</p>
+                <p class="citation">Псалом 119(118):1-32 CUV</p>
+            </div>
+        </div>
+
+        <div class="topic">
+            <h2 class="topic-title">Psalm 119:1-32</h2>
+            <div class="verse-block">
+                <p class="scripture">"Blessed are those whose way is blameless, who walk in the law of the Lord ! Blessed are those who keep his testimonies, who seek him with their whole heart, who also do no wrong, but walk in his ways! You have commanded your precepts to be kept diligently. Oh that my ways may be steadfast in keeping your statutes! Then I shall not be put to shame, having my eyes fixed on all your commandments. I will praise you with an upright heart, when I learn your righteous rules. I will keep your statutes; do not utterly forsake me! How can a young man keep his way pure? By guarding it according to your word. With my whole heart I seek you; let me not wander from your commandments! I have stored up your word in my heart, that I might not sin against you. Blessed are you, O Lord ; teach me your statutes! With my lips I declare all the rules of your mouth. In the way of your testimonies I delight as much as in all riches. I will meditate on your precepts and fix my eyes on your ways. I will delight in your statutes; I will not forget your word. Deal bountifully with your servant, that I may live and keep your word. Open my eyes, that I may behold wondrous things out of your law. I am a sojourner on the earth; hide not your commandments from me! My soul is consumed with longing for your rules at all times. You rebuke the insolent, accursed ones, who wander from your commandments. Take away from me scorn and contempt, for I have kept your testimonies. Even though princes sit plotting against me, your servant will meditate on your statutes. Your testimonies are my delight; they are my counselors. My soul clings to the dust; give me life according to your word! When I told of my ways, you answered me; teach me your statutes! Make me understand the way of your precepts, and I will meditate on your wondrous works. My soul melts away for sorrow; strengthen me according to your word! Put false ways far from me and graciously teach me your law! I have chosen the way of faithfulness; I set your rules before me. I cling to your testimonies, O Lord ; let me not be put to shame! I will run in the way of your commandments when you enlarge my heart!"</p>
+                <p class="citation">Psalm 119:1-32 ESV</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="content-ua" class="content-section" style="display:none;">
+        <div class="topic">
+            <h2 class="topic-title">Я і Бог</h2>
+            <p class="topic-desc">Молитва про особисте пізнання Христа і відображення Його образу. <span class="refs">(Ефесянам 1,17-18; Рим. 8,29; Гал. 4,19)</span></p>
+
+            <div class="verse-block">
+                <p class="scripture">«Щоби Бог Господа нашого Ісуса Христа, Отець слави, дав вам Духа мудрості й відкриття для Його пізнання, просвітивши очі вашого серця, щоб ви знали, якою є надія Його покликання, яке багатство слави Його спадщини у святих,»</p>
+                <p class="citation">ЕФЕСЯН 1:17-18 CUV</p>
+            </div>
+
+            <div class="verse-block">
+                <p class="scripture">«Адже кого Він наперед пізнав, тих і визначив наперед, щоби були вони подібні до образу Його Сина, аби бути Йому первістком серед багатьох братів,»</p>
+                <p class="citation">РИМЛЯН 8:29 CUV</p>
+            </div>
+
+            <div class="verse-block">
+                <p class="scripture">«Діти мої, я знову терплю нестерпні муки за вас, доки не відобразиться у вас Христос.»</p>
+                <p class="citation">ГАЛАТІВ 4:19 CUV</p>
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <div class="topic">
+            <h2 class="topic-title">Я і моя боротьба</h2>
+            <p class="topic-desc">Молитва про силу для перемоги спокуси та гріха. <span class="refs">(Еф. 6,12-13; 1 Кор. 10,14)</span></p>
+
+            <div class="verse-block">
+                <p class="scripture">«Адже наша боротьба не з тілом і кров’ю, але з началами, з владами, зі світовими правителями темряви цього [віку], з піднебесними духами злоби. Тому візьміть усю Божу зброю, щоб ви змогли дати опір у день зла і, все подолавши, вистояти.»</p>
+                <p class="citation">ЕФЕСЯН 6:12-13 CUV</p>
+            </div>
+
+            <div class="verse-block">
+                <p class="scripture">«Тому, мої улюблені, втікайте від служіння ідолам.»</p>
+                <p class="citation">1 КОРИНТЯН 10:14 CUV</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="content-en" class="content-section" style="display:none;">
+        <div class="topic">
+            <h2 class="topic-title">Me and God</h2>
+            <p class="topic-desc">Prayer for personal knowledge of Christ and reflecting His image. <span class="refs">(Ephesians 1:17-18; Rom. 8:29; Gal. 4:19)</span></p>
+
+            <div class="verse-block">
+                <p class="scripture">"that the God of our Lord Jesus Christ, the Father of glory, may give you the Spirit of wisdom and of revelation in the knowledge of him, having the eyes of your hearts enlightened, that you may know what is the hope to which he has called you, what are the riches of his glorious inheritance in the saints,"</p>
+                <p class="citation">Ephesians 1:17-18 ESV</p>
+            </div>
+
+            <div class="verse-block">
+                <p class="scripture">"For those whom he foreknew he also predestined to be conformed to the image of his Son, in order that he might be the firstborn among many brothers."</p>
+                <p class="citation">Romans 8:29 ESV</p>
+            </div>
+
+            <div class="verse-block">
+                <p class="scripture">"my little children, for whom I am again in the anguish of childbirth until Christ is formed in you!"</p>
+                <p class="citation">Galatians 4:19 ESV</p>
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <div class="topic">
+            <h2 class="topic-title">Me and My Battles</h2>
+            <p class="topic-desc">Prayer for strength to overcome temptations and sin. <span class="refs">(Ephesians 6:12-13; 1 Cor. 10:14)</span></p>
+
+            <div class="verse-block">
+                <p class="scripture">"For we do not wrestle against flesh and blood, but against the rulers, against the authorities, against the cosmic powers over this present darkness, against the spiritual forces of evil in the heavenly places. Therefore take up the whole armor of God, that you may be able to withstand in the evil day, and having done all, to stand firm."</p>
+                <p class="citation">Ephesians 6:12-13 ESV</p>
+            </div>
+
+            <div class="verse-block">
+                <p class="scripture">"Therefore, my beloved, flee from idolatry."</p>
+                <p class="citation">1 Corinthians 10:14 ESV</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function switchTab(selectedId) {
+            // List of all possible content IDs
+            const sections = ['content-psalm', 'content-ua', 'content-en'];
+
+            sections.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    if (id === 'content-' + selectedId) {
+                        el.style.display = 'block';
+                        el.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    } else {
+                        el.style.display = 'none';
+                    }
+                }
+            });
+        }
+    </script>
+
+</body>
+
+</html>
