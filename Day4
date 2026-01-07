@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day Four - Prayer Week</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,900&family=Montserrat:wght@300;400;700&family=Oswald:wght@500&display=swap" rel="stylesheet">
+
+    <style>
+        /* --css reset and variables--- */
+        :root {
+            --accent-yellow: #FFEA00;
+            --text-white: #FFFFFF;
+            --text-grey: #cccccc;
+            --bg-dark: #0d110f;
+            --font-serif: 'Oswald', serif;
+            --font-sans: 'Montserrat', sans-serif;
+            --font-condensed: 'Oswald', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: var(--font-sans);
+            background-color: var(--bg-dark);
+            color: var(--text-white);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ---hero section--- */
+        .hero {
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            /* Forest Background - Day 4 */
+            background-image: url('https://tithely-media-prod.s3.us-west-1.wasabisys.com/1094057/Day-4-Background.png');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(18, 28, 22, 0.4), rgba(13, 17, 15, 1));
+            z-index: 1;
+        }
+
+        .logo,
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo {
+            position: absolute;
+            top: 30px;
+            left: 20px;
+            font-family: var(--font-condensed);
+            color: var(--accent-yellow);
+            font-size: 1.2rem;
+            line-height: 1;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-align: left;
+        }
+
+        .subtitle-top {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: -5px;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+
+        .main-title {
+            font-family: var(--font-serif);
+            font-size: 22vw;
+            line-height: 0.85;
+            color: var(--accent-yellow);
+            margin: 10px 0;
+            text-transform: uppercase;
+            font-weight: 900;
+            text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .subtitle-bottom {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 15px;
+            font-weight: 300;
+            opacity: 0.85;
+            max-width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ---buttons--- */
+        .lang-controls {
+            margin-top: 40px;
+            display: flex;
+            flex-wrap: wrap;
+            /* Allows wrapping */
+            gap: 15px;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-lang {
+            background: transparent;
+            border: 1px solid var(--accent-yellow);
+            color: var(--accent-yellow);
+            padding: 12px 24px;
+            font-family: var(--font-condensed);
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex: 1;
+            min-width: 120px;
+        }
+
+        /* ---big button--- */
+        .btn-full {
+            flex-basis: 100%;
+        }
+
+        .btn-lang:active {
+            background: var(--accent-yellow);
+            color: #000;
+        }
+
+        /* ---content section--- */
+        .content-section {
+            padding: 40px 20px 80px 20px;
+            background-color: var(--bg-dark);
+            min-height: 60vh;
+        }
+
+        /* Hide English by default */
+        #content-en {
+            display: none;
+        }
+
+        .topic {
+            margin-bottom: 50px;
+        }
+
+        .topic-title {
+            font-family: var(--font-serif);
+            color: var(--accent-yellow);
+            font-size: 2rem;
+            margin-bottom: 15px;
+            margin-top: 0;
+            line-height: 1.1;
+        }
+
+        .topic-desc {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            font-weight: 400;
+            color: #ddd;
+        }
+
+        .refs {
+            color: #999;
+            font-size: 0.9em;
+            display: block;
+            margin-top: 5px;
+        }
+
+        .verse-block {
+            border-left: 3px solid var(--accent-yellow);
+            padding-left: 15px;
+            margin-bottom: 35px;
+        }
+
+        .scripture {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 1.15rem;
+            line-height: 1.5;
+            margin: 0 0 12px 0;
+            color: #ececec;
+        }
+
+        .citation {
+            font-family: var(--font-condensed);
+            font-size: 0.85rem;
+            color: var(--accent-yellow);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .divider {
+            border: 0;
+            height: 1px;
+            background: #333;
+            margin: 40px 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <section class="hero">
+        <div class="overlay"></div>
+
+        <div class="logo">
+            PRAYER<br>WEEK
+        </div>
+
+        <div class="hero-content">
+            <p class="subtitle-top">МОЛИТВА ПРО ПОКЛИКАННЯ</p>
+            <h1 class="main-title">DAY<br>FOUR</h1>
+            <p class="subtitle-bottom">БЛАГОВІСТЯ, СТОСУНКИ ТА ПОСВЯТА</p>
+
+            <div class="lang-controls">
+                <button class="btn-lang" onclick="switchTab('ua')">УКРАЇНСЬКА</button>
+                <button class="btn-lang" onclick="switchTab('en')">ENGLISH</button>
+                <button class="btn-lang btn-full" onclick="switchTab('psalm')">ЩОДЕННИЙ ПСАЛОМ / DAILY PSALM</button>
+            </div>
+        </div>
+    </section>
+
+    <div id="content-psalm" class="content-section">
+        <div class="topic">
+            <h2 class="topic-title">ПСАЛМИ 119(118):97-128</h2>
+            <div class="verse-block">
+                <p class="scripture">"Як люблю я Твій закон! Щодня роздумую над ним. Твої Заповіді роблять мене мудрішим за моїх ворогів; вони – моє надбання! Я стаю мудрішим за всіх моїх учителів, коли роздумую над Твоїми свідченнями. Коли дотримуюсь Твоїх Заповідей, я стаю мудрішим від старших. Дотримуючись Твоїх слів, я стримую свої кроки від усякої поганої дороги. Я не ухиляюсь від Твоїх присудів, оскільки Ти Сам навчаєш мене. Які ж солодкі для мене Твої слова! Вони для мене солодші за мед! Від Твоїх Заповідей я порозумнішав і через те зненавидів усяку дорогу неправди. Твоє слово є світильником для моїх ніг, світлом на моїй стежці! Я присягнувся, вирішивши дотримуватись присудів правди Твоєї. Я дуже пригнічений. Господи , за словом Своїм оживи мене! Прийми, Господи , добровільні жертви моїх уст і навчай мене Своїх присудів! Хоча моє життя завжди в небезпеці, я не забуваю Твого Закону. Нечестиві поставили на мене пастку, але я не ухилився від Твоїх Заповідей. Я успадкував Твої свідчення навіки, адже вони є насолодою мого серця. Я схилив своє серце виконувати Твої постанови завжди й до кінця! Я ненавиджу двоєдушних, а Закон Твій люблю. Ти мій Притулок і Захист мій! Я покладаю надію на Твоє слово. Відійдіть від мене всі злочинці, бо я буду дотримуватися Заповідей свого Бога! Допоможи мені, згідно зі Своєю обітницею, щоб я міг жити! Не осором мене в моїй надії! Підтримай мене, щоб я міг спастись! Я ж постійно вважатиму на Твої постанови. Ти нехтуєш усіма, котрі ухиляються від Твоїх постанов, бо їхні задуми фальшиві. Всіх нечестивих землі Ти відкидаєш, як жужелицю, тому я люблю Твої свідчення. Моє тіло тремтить від страху перед Тобою, бо Твоїх присудів я боюся! Я чинив суд і правду, тож не віддавай мене гнобителям моїм. Будь запорукою для Твого слуги на добро! Нехай зарозумілі не пригноблюють мене. Мої очі втомились, очікуючи Твого спасіння за словом Твоєї справедливості. Учини зі Своїм слугою за Твоїм милосердям, – навчай мене Своїх постанов! Я Твій слуга. Дай мені розуміння пізнавати Твої свідчення! Пора Господу діяти! Вони порушили Твій Закон. Тому я люблю Твої Заповіді більше, ніж золото, – ніж золото найчистіше. Вважаючи усі Твої Заповіді добрими, я ненавиджу всяку підступну дорогу."</p>
+                <p class="citation">ПСАЛМИ 119(118):97-128 CUV</p>
+            </div>
+        </div>
+
+        <div class="topic">
+            <h2 class="topic-title">Psalm 119:97-128</h2>
+            <div class="verse-block">
+                <p class="scripture">"Oh how I love your law! It is my meditation all the day. Your commandment makes me wiser than my enemies, for it is ever with me. I have more understanding than all my teachers, for your testimonies are my meditation. I understand more than the aged, for I keep your precepts. I hold back my feet from every evil way, in order to keep your word. I do not turn aside from your rules, for you have taught me. How sweet are your words to my taste, sweeter than honey to my mouth! Through your precepts I get understanding; therefore I hate every false way. Your word is a lamp to my feet and a light to my path. I have sworn an oath and confirmed it, to keep your righteous rules. I am severely afflicted; give me life, O Lord , according to your word! Accept my freewill offerings of praise, O Lord , and teach me your rules. I hold my life in my hand continually, but I do not forget your law. The wicked have laid a snare for me, but I do not stray from your precepts. Your testimonies are my heritage forever, for they are the joy of my heart. I incline my heart to perform your statutes forever, to the end. I hate the double-minded, but I love your law. You are my hiding place and my shield; I hope in your word. Depart from me, you evildoers, that I may keep the commandments of my God. Uphold me according to your promise, that I may live, and let me not be put to shame in my hope! Hold me up, that I may be safe and have regard for your statutes continually! You spurn all who go astray from your statutes, for their cunning is in vain. All the wicked of the earth you discard like dross, therefore I love your testimonies. My flesh trembles for fear of you, and I am afraid of your judgments. I have done what is just and right; do not leave me to my oppressors. Give your servant a pledge of good; let not the insolent oppress me. My eyes long for your salvation and for the fulfillment of your righteous promise. Deal with your servant according to your steadfast love, and teach me your statutes. I am your servant; give me understanding, that I may know your testimonies! It is time for the Lord to act, for your law has been broken. Therefore I love your commandments above gold, above fine gold. Therefore I consider all your precepts to be right; I hate every false way."</p>
+                <p class="citation">Psalm 119:97-128 ESV</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="content-ua" class="content-section" style="display:none;">
+
+        <div class="topic">
+            <h2 class="topic-title">Благовістя</h2>
+            <p class="topic-desc">Молитва про Богошукання багатьох і свідоме свідоцтво членів церкви; про місіонерів і новонавернених людей, які шукають Бога. <span class="refs">(Мт. 5,13-16; Рим. 1,14-15)</span></p>
+
+            <div class="verse-block">
+                <p class="scripture">«Ви – сіль землі. Якщо сіль втратить силу, то як зробити її солоною? Нінащо вона вже не буде більше придатна, хіба щоб викинути геть, аби топтали її люди. Ви – світло для світу. Не можна сховати міста, що стоїть на горі. І не запалюють світильника, аби поставити його під посудину, але ставлять на свічник, щоби світив усім, хто в домі. Тож нехай сяє ваше світло перед людьми, щоб вони побачили ваші добрі діла й прославили Отця вашого, Який на небесах.»</p>
+                <p class="citation">МАТВІЯ 5:13-16 CUV</p>
+            </div>
+
+            <div class="verse-block">
+                <p class="scripture">«Я боржник перед греками і варварами, мудрими і немудрими; тому, щодо мене, то я готовий і вам, які в Римі, звістити Євангелію.»</p>
+                <p class="citation">РИМЛЯН 1:14-15 CUV</p>
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <div class="topic">
+            <h2 class="topic-title">Стосунки</h2>
+            <p class="topic-desc">Молитва про зростаючі стосунки в подружжі і між братами і сестрами, про взаємну любов і прощення. <span class="refs">(Рим. 12,9-18)</span></p>
+
+            <div class="verse-block">
+                <p class="scripture">«Любов – нелицемірна. Ненавидьте зло, шукайте добра, любіть один одного по‑братерськи, пошаною один одного випереджайте; у наполегливості не лінуйтеся, духом палайте, Господу служіть, радійте надією, труднощі переносьте, перебувайте в молитві; беріть участь у потребах святих, виявляйте гостинність. Благословляйте тих, хто переслідує вас, – благословляйте, а не проклинайте. Радійте з тими, які радіють, і плачте з тими, котрі плачуть. Тримайтеся між собою однієї думки, не будьте зарозумілими, наслідуйте лагідних. Не вважайте себе мудрими. Нікому не платіть злом за зло, дбайте про добро перед усіма людьми. Якщо це залежить від вас, – живіть з усіма людьми в мирі.»</p>
+                <p class="citation">РИМЛЯН 12:9-18 CUV</p>
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <div class="topic">
+            <h2 class="topic-title">Посвята</h2>
+            <p class="topic-desc">Молитва про посвяту. <span class="refs">(1 Кор. 15,58; 1 Кор. 9,1-7)</span></p>
+
+            <div class="verse-block">
+                <p class="scripture">«Тому, мої любі брати, будьте стійкі, непохитні, завжди відзначайтеся в Господі, знаючи, що ваша праця в Господі не даремна.»</p>
+                <p class="citation">1 КОРИНТЯН 15:58 CUV</p>
+            </div>
+
+            <div class="verse-block">
+                <p class="scripture">«Хіба я не вільний? Хіба я не апостол? Хіба я не бачив нашого Господа Ісуса Христа? Хіба ви не є моїм ділом у Господі? Коли я не апостол для інших, то для вас я апостол, бо ви є печаттю мого апостольства в Господі. Ось моя відповідь тим, які судять мене! Чи ми не маємо права їсти та пити? Чи ми не маємо права водити з собою сестру‑жінку, як і інші апостоли, як брати Господні, як Кифа? Хіба я особисто і Варнава не маємо права не працювати? Хто з воїнів служить за свої кошти? Хто садить виноград і не їсть його плоду? Або хто пасе отару і не споживає молока з отари?»</p>
+                <p class="citation">1 КОРИНТЯН 9:1-7 CUV</p>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="content-en" class="content-section" style="display:none;">
+        <div class="topic">
+            <h2 class="topic-title">Evangelism</h2>
+            <p class="topic-desc">Prayer for many people's seeking of God and the conscious witness of church members; for missionaries and newly converted people who are seeking God.</p>
+
+            <div class="verse-block">
+                <p class="scripture">"“You are the salt of the earth, but if salt has lost its taste, how shall its saltiness be restored? It is no longer good for anything except to be thrown out and trampled under people’s feet. “You are the light of the world. A city set on a hill cannot be hidden. Nor do people light a lamp and put it under a basket, but on a stand, and it gives light to all in the house. In the same way, let your light shine before others, so that they may see your good works and give glory to your Father who is in heaven."</p>
+                <p class="citation">Matthew 5:13-16 ESV</p>
+            </div>
+
+            <div class="verse-block">
+                <p class="scripture">"I am under obligation both to Greeks and to barbarians, both to the wise and to the foolish. So I am eager to preach the gospel to you also who are in Rome."</p>
+                <p class="citation">Romans 1:14-15 ESV</p>
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <div class="topic">
+            <h2 class="topic-title">Relationships</h2>
+            <p class="topic-desc">Prayer for growing relationships in marriage and between brothers and sisters, for mutual love and forgiveness.</p>
+            <div class="verse-block">
+                <p class="scripture">"Let love be genuine. Abhor what is evil; hold fast to what is good. Love one another with brotherly affection. Outdo one another in showing honor. Do not be slothful in zeal, be fervent in spirit, serve the Lord. Rejoice in hope, be patient in tribulation, be constant in prayer. Contribute to the needs of the saints and seek to show hospitality. Bless those who persecute you; bless and do not curse them. Rejoice with those who rejoice, weep with those who weep. Live in harmony with one another. Do not be haughty, but associate with the lowly. Never be wise in your own sight. Repay no one evil for evil, but give thought to do what is honorable in the sight of all. If possible, so far as it depends on you, live peaceably with all."</p>
+                <p class="citation">Romans 12:9-18 ESV</p>
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <div class="topic">
+            <h2 class="topic-title">Dedication</h2>
+            <p class="topic-desc">Prayer for commitment and dedication to the Lord.</p>
+            <div class="verse-block">
+                <p class="scripture">"Therefore, my beloved brothers, be steadfast, immovable, always abounding in the work of the Lord, knowing that in the Lord your labor is not in vain."</p>
+                <p class="citation">1 Corinthians 15:58 ESV</p>
+            </div>
+
+            <div class="verse-block">
+                <p class="scripture">"Am I not free? Am I not an apostle? Have I not seen Jesus our Lord? Are not you my workmanship in the Lord? If to others I am not an apostle, at least I am to you, for you are the seal of my apostleship in the Lord. This is my defense to those who would examine me. Do we not have the right to eat and drink? Do we not have the right to take along a believing wife, as do the other apostles and the brothers of the Lord and Cephas? Or is it only Barnabas and I who have no right to refrain from working for a living? Who serves as a soldier at his own expense? Who plants a vineyard without eating any of its fruit? Or who tends a flock without getting some of the milk?"</p>
+                <p class="citation">1 Corinthians 9:1-7 ESV</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function switchTab(selectedId) {
+            const sections = ['content-psalm', 'content-ua', 'content-en'];
+
+            sections.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    if (id === 'content-' + selectedId) {
+                        el.style.display = 'block';
+                        el.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    } else {
+                        el.style.display = 'none';
+                    }
+                }
+            });
+        }
+    </script>
+
+</body>
+
+</html>
