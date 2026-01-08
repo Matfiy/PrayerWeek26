@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day Five - Prayer Week</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,900&family=Montserrat:wght@300;400;700&family=Oswald:wght@500&display=swap" rel="stylesheet">
+
+    <style>
+        /* ---css reset & variables */
+        :root {
+            --accent-yellow: #FFEA00;
+            --text-white: #FFFFFF;
+            --text-grey: #cccccc;
+            --bg-dark: #0d110f;
+            --font-serif: 'Oswald', serif;
+            --font-sans: 'Montserrat', sans-serif;
+            --font-condensed: 'Oswald', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: var(--font-sans);
+            background-color: var(--bg-dark);
+            color: var(--text-white);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ---hero section--- */
+        .hero {
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            /* Forest Background - Day 5 */
+            background-image: url('https://tithely-media-prod.s3.us-west-1.wasabisys.com/1094070/Day-5-Background.png');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(18, 28, 22, 0.4), rgba(13, 17, 15, 1));
+            z-index: 1;
+        }
+
+        .logo,
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo {
+            position: absolute;
+            top: 30px;
+            left: 20px;
+            font-family: var(--font-condensed);
+            color: var(--accent-yellow);
+            font-size: 1.2rem;
+            line-height: 1;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-align: left;
+        }
+
+        .subtitle-top {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: -5px;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+
+        .main-title {
+            font-family: var(--font-serif);
+            font-size: 22vw;
+            line-height: 0.85;
+            color: var(--accent-yellow);
+            margin: 10px 0;
+            text-transform: uppercase;
+            font-weight: 900;
+            text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .subtitle-bottom {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 15px;
+            font-weight: 300;
+            opacity: 0.85;
+            max-width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ---buttons--- */
+        .lang-controls {
+            margin-top: 40px;
+            display: flex;
+            flex-wrap: wrap;
+            /* Allows wrapping */
+            gap: 15px;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-lang {
+            background: transparent;
+            border: 1px solid var(--accent-yellow);
+            color: var(--accent-yellow);
+            padding: 12px 24px;
+            font-family: var(--font-condensed);
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex: 1;
+            min-width: 120px;
+        }
+
+        /* ---big button--- */
+        .btn-full {
+            flex-basis: 100%;
+        }
+
+        .btn-lang:active {
+            background: var(--accent-yellow);
+            color: #000;
+        }
+
+        /* ---content section--- */
+        .content-section {
+            padding: 40px 20px 80px 20px;
+            background-color: var(--bg-dark);
+            min-height: 60vh;
+        }
+
+        /* Hide English by default */
+        #content-en {
+            display: none;
+        }
+
+        .topic {
+            margin-bottom: 50px;
+        }
+
+        .topic-title {
+            font-family: var(--font-serif);
+            color: var(--accent-yellow);
+            font-size: 2rem;
+            margin-bottom: 15px;
+            margin-top: 0;
+            line-height: 1.1;
+        }
+
+        .topic-desc {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            font-weight: 400;
+            color: #ddd;
+        }
+
+        .refs {
+            color: #999;
+            font-size: 0.9em;
+            display: block;
+            margin-top: 5px;
+        }
+
+        .verse-block {
+            border-left: 3px solid var(--accent-yellow);
+            padding-left: 15px;
+            margin-bottom: 35px;
+        }
+
+        .scripture {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 1.15rem;
+            line-height: 1.5;
+            margin: 0 0 12px 0;
+            color: #ececec;
+        }
+
+        .citation {
+            font-family: var(--font-condensed);
+            font-size: 0.85rem;
+            color: var(--accent-yellow);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .divider {
+            border: 0;
+            height: 1px;
+            background: #333;
+            margin: 40px 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <section class="hero">
+        <div class="overlay"></div>
+
+        <div class="logo">
+            PRAYER<br>WEEK
+        </div>
+
+        <div class="hero-content">
+            <p class="subtitle-top">МОЛИТВА ПРО КРАЇНУ</p>
+            <h1 class="main-title">DAY<br>FIVE</h1>
+            <p class="subtitle-bottom">ВДЯЧНІСТЬ, ВЛАДА ТА НАЦІЯ</p>
+
+            <div class="lang-controls">
+                <button class="btn-lang" onclick="switchTab('ua')">УКРАЇНСЬКА</button>
+                <button class="btn-lang" onclick="switchTab('en')">ENGLISH</button>
+                <button class="btn-lang btn-full" onclick="switchTab('psalm')">ЩОДЕННИЙ ПСАЛОМ / DAILY PSALM</button>
+            </div>
+        </div>
+    </section>
+
+    <div id="content-psalm" class="content-section">
+        <div class="topic">
+            <h2 class="topic-title">ПСАЛМИ 119(118):129-160</h2>
+            <div class="verse-block">
+                <p class="scripture">"Дивовижні Твої свідчення, тому й дорожить ними моя душа! Відкриваючись людині, Твої слова освітлюють її і роблять мудрими навіть простих людей. У своєму прагненні Твоїх Заповідей я відкриваю свої уста і тяжко зітхаю. Подивись на мене й змилуйся наді мною, як Ти чиниш з тими, котрі люблять Твоє Ім’я! Зміцни мої кроки у пізнанні Свого слова, і не дозволь жодному гріхові панувати наді мною! Визволи мене від утиску людини, і я буду дотримуватись Твоїх Заповідей! Осяй світлом Свого обличчя Твого слугу, і навчи мене Своїм постановам! Потоки сліз ллються з моїх очей, через те що люди не дотримуються Твого Закону. Праведний Ти, Господи , й справедливі присуди Твої! Ти заповів Свої свідчення в праведності та великій вірності. Мене виснажує ревність моя, через те що мої вороги забули Твої слова. Слово Твоє чисте понад найвищу пробу, і тому Твій слуга любить його. Хоч я малий і зневажений, але не забуваю Твоїх постанов. Твоя праведність – праведність вічна, і Твій Закон – істина. Мене спіткали горе і скрута, але Твої Заповіді – утіха для мене. Твої свідчення є вічною правдою! Пошли мені розуміння, і я буду жити! Від усього свого серця я волаю: Почуй мене, Господи ! Я буду дотримуватись Твоїх постанов. Прошу Тебе: Спаси мене, і я триматимусь Твоїх свідчень! Встаю я вдосвіта й прошу про допомогу: На Твоє слово я покладаю надію! Мої очі відкриваються, випереджуючи світанок, щоб роздумувати над Твоїм словом. У Своєму милосерді почуй мій голос, Господи, оживи мене за Своїм присудом! Наблизилися до мене мої переслідувачі з поганим наміром; вони далекі від Твого Закону. Ти ж, Господи , близько, і всі Твої Заповіді – істина. Віддавна я знаю про Твої свідчення, що Ти їх утвердив навіки. Подивись на моє нещастя і визволь мене, бо я не забуваю Твого Закону! Вникни в мою справу і подаруй мені життя, як обіцяв Ти у слові Своїм! Далеке від нечестивих спасіння, бо вони не шукають Твоїх постанов. Велике милосердя Твоє, Господи , оживи мене, згідно зі Своїми присудами! Багато в мене переслідувачів і ворогів, але я не відхиляюсь від Твоїх свідчень. Коли я дивлюся на відступників, то відчуваю огиду, через те що вони не дотримуються Твого слова. Подивись на мою любов до Твоїх Заповідей! Господи , оживи мене за Своїм милосердям! Зміст Твоїх слів – істина, і всі постанови Твоєї праведності – вічні!"</p>
+                <p class="citation">ПСАЛМИ 119(118):129-160 CUV</p>
+            </div>
+        </div>
+
+        <div class="topic">
+            <h2 class="topic-title">Psalm 119:129-160</h2>
+            <div class="verse-block">
+                <p class="scripture">"Your testimonies are wonderful; therefore my soul keeps them. The unfolding of your words gives light; it imparts understanding to the simple. I open my mouth and pant, because I long for your commandments. Turn to me and be gracious to me, as is your way with those who love your name. Keep steady my steps according to your promise, and let no iniquity get dominion over me. Redeem me from man’s oppression, that I may keep your precepts. Make your face shine upon your servant, and teach me your statutes. My eyes shed streams of tears, because people do not keep your law. Righteous are you, O Lord , and right are your rules. You have appointed your testimonies in righteousness and in all faithfulness. My zeal consumes me, because my foes forget your words. Your promise is well tried, and your servant loves it. I am small and despised, yet I do not forget your precepts. Your righteousness is righteous forever, and your law is true. Trouble and anguish have found me out, but your commandments are my delight. Your testimonies are righteous forever; give me understanding that I may live. With my whole heart I cry; answer me, O Lord ! I will keep your statutes. I call to you; save me, that I may observe your testimonies. I rise before dawn and cry for help; I hope in your words. My eyes are awake before the watches of the night, that I may meditate on your promise. Hear my voice according to your steadfast love; O Lord , according to your justice give me life. They draw near who persecute me with evil purpose; they are far from your law. But you are near, O Lord , and all your commandments are true. Long have I known from your testimonies that you have founded them forever. Look on my affliction and deliver me, for I do not forget your law. Plead my cause and redeem me; give me life according to your promise! Salvation is far from the wicked, for they do not seek your statutes. Great is your mercy, O Lord ; give me life according to your rules. Many are my persecutors and my adversaries, but I do not swerve from your testimonies. I look at the faithless with disgust, because they do not keep your commands. Consider how I love your precepts! Give me life, O Lord , according to your steadfast love. The sum of your word is truth, and every one of your righteous rules endures forever."</p>
+                <p class="citation">Psalm 119:129-160 ESV</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="content-ua" class="content-section" style="display:none;">
+
+        <div class="topic">
+            <h2 class="topic-title">Вдячність Богові про країну</h2>
+            <p class="topic-desc">Подяка за численні благословення, які Господь подарував у цій країні, подяка за красу Його творива і за можливості для життя і служіння. <span class="refs">(1Тим. 2,1-2; Пс. 103)</span></p>
+
+            <div class="verse-block">
+                <p class="scripture">«Отже, насамперед прошу, щоби звершувати молитви, благання, прохання, подяки за всіх людей, за царів і за всіх, хто при владі, щоб нам жити тихим і спокійним життям – в усякій побожності та чистоті.»</p>
+                <p class="citation">1 ТИМОФІЯ 2:1-2 CUV</p>
+            </div>
+
+            <div class="verse-block">
+                <p class="scripture">«Псалом Давида. Благослови, душе моя, Господа і все моє єство, – святе Ім’я Його! Благослови, душе моя, Господа і не забувай усіх Його благодійств. Він прощає всі провини твої, зціляє всі твої хвороби. Він рятує твоє життя від могили, – коронує тебе милосердям і щедротами. Він обдаровує добром твоє життя, так що відновлюється, як у орла, молодість твоя. Господь здійснює правосуддя на суді щодо всіх скривджених. Він відкрив Мойсеєві наміри Свої, – явив синам Ізраїлевим діла Свої. Співчутливий і милостивий Господь, довготерпеливий і сповнений доброти. Не завжди Він звинувачує нас і не вічно Він гнівається. Він не чинить нам відповідно з нашими гріхами, – не відплачує нам за нашими провинами. Бо як високо над землею небо, настільки велика Його любов до тих, котрі шанують Його. Як далеко є схід від заходу, так віддалив Він від нас наші беззаконня. Як батько любить дітей, так Господь виявляє милість до тих, котрі Його бояться. Адже Він знає, з чого ми створені, – пам’ятає, що ми – порох! Дні людини, як у трави, – вона квітує, як польова квітка, але пронесеться над нею вітер, і її не стане, – навіть місця її вже не видно. Господнє ж милосердя незмінне від віку й до віку щодо тих, котрі шанують Його, і справедливість Його – до нащадків їхніх дітей, котрі дотримуються Його Заповіту й пам’ятають про Його Заповіді, виконуючи їх. Господь встановив Свій престол на небі, і Його влада простягається над усім. Благословіте Господа всі ангели Його, – ви могутні силою, котрі виконуєте слово Його, підкоряючись Його велінням! Благословіть Господа всі сили Його, які служать Йому і виконують Його волю! Благослови Господа все творіння Його, на кожному місці Його владарювання! Благослови, душе моя, Господа!»</p>
+                <p class="citation">ПСАЛМИ 103:1-22 CUV</p>
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <div class="topic">
+            <h2 class="topic-title">Молитва про лідерів</h2>
+            <p class="topic-desc">Молитва про президента і губернатора, про конгресменів і сенаторів: про мудрість і відповідальність; про подальшу підтримку України і Ізраїлю, про більшу кількість сповідуючих християн в усіх гілках влади. <span class="refs">(І Тим. 2,1-2; Прип. 29,2)</span></p>
+
+            <div class="verse-block">
+                <p class="scripture">«Коли праведні намножуються, народ радіє, а коли владарюють нечестиві, люди стогнуть.»</p>
+                <p class="citation">ПРИТЧІ 29:2 CUV</p>
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <div class="topic">
+            <h2 class="topic-title">Молитва про націю</h2>
+            <p class="topic-desc">Про Богошукання і справедливість, про порозуміння і повагу, про примирення і надію. <span class="refs">(І Тим. 2,1-2; Дії 17,26-27)</span></p>
+
+            <div class="verse-block">
+                <p class="scripture">«Створив Він з одного весь людський рід, щоби жив по всій поверхні землі, визначивши заздалегідь окреслені пори та межі їхнього проживання, щоб шукали Бога: може, відчують Його і знайдуть, бо ж недалеко Він від кожного з нас.»</p>
+                <p class="citation">ДІЇ 17:26-27 CUV</p>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="content-en" class="content-section" style="display:none;">
+        <div class="topic">
+            <h2 class="topic-title">Gratitude for the Country</h2>
+            <p class="topic-desc">Thanksgiving for the numerous blessings that the Lord has given in this country, thanksgiving for the beauty of His creation and for the opportunities for life and ministry</p>
+
+            <div class="verse-block">
+                <p class="scripture">"First of all, then, I urge that supplications, prayers, intercessions, and thanksgivings be made for all people, for kings and all who are in high positions, that we may lead a peaceful and quiet life, godly and dignified in every way."</p>
+                <p class="citation">1 Timothy 2:1-2 ESV</p>
+            </div>
+
+            <div class="verse-block">
+                <p class="scripture">"Bless the Lord , O my soul, and all that is within me, bless his holy name! Bless the Lord , O my soul, and forget not all his benefits, who forgives all your iniquity, who heals all your diseases, who redeems your life from the pit, who crowns you with steadfast love and mercy, who satisfies you with good so that your youth is renewed like the eagle’s. The Lord works righteousness and justice for all who are oppressed. He made known his ways to Moses, his acts to the people of Israel. The Lord is merciful and gracious, slow to anger and abounding in steadfast love. He will not always chide, nor will he keep his anger forever. He does not deal with us according to our sins, nor repay us according to our iniquities. For as high as the heavens are above the earth, so great is his steadfast love toward those who fear him; as far as the east is from the west, so far does he remove our transgressions from us. As a father shows compassion to his children, so the Lord shows compassion to those who fear him. For he knows our frame; he remembers that we are dust. As for man, his days are like grass; he flourishes like a flower of the field; for the wind passes over it, and it is gone, and its place knows it no more. But the steadfast love of the Lord is from everlasting to everlasting on those who fear him, and his righteousness to children’s children, to those who keep his covenant and remember to do his commandments. The Lord has established his throne in the heavens, and his kingdom rules over all. Bless the Lord , O you his angels, you mighty ones who do his word, obeying the voice of his word! Bless the Lord , all his hosts, his ministers, who do his will! Bless the Lord , all his works, in all places of his dominion. Bless the Lord , O my soul!"</p>
+                <p class="citation">Psalm 103:1-22 ESV</p>
+            </div>
+        </div>
+
+        <div class="topic">
+            <h2 class="topic-title">Prayer for the President, Governor, Congressmen, and Senators</h2>
+            <p class="topic-desc">Prayer for wisdom and responsibility for political leaders and legislators; for continued support of Ukraine and Israel, for a greater number of confessing Christians in all branches of government.</p>
+            <div class="verse-block">
+                <p class="scripture">"When the righteous increase, the people rejoice, but when the wicked rule, the people groan."</p>
+                <p class="citation">Proverbs 29:2 ESV</p>
+            </div>
+        </div>
+
+        <div class="topic">
+            <h2 class="topic-title">Prayer for the Nation</h2>
+            <p class="topic-desc">Prayer for God-seeking and justice, for understanding and respect, for reconciliation and hope.</p>
+            <div class="verse-block">
+                <p class="scripture">"And he made from one man every nation of mankind to live on all the face of the earth, having determined allotted periods and the boundaries of their dwelling place, that they should seek God, and perhaps feel their way toward him and find him. Yet he is actually not far from each one of us,"</p>
+                <p class="citation">Acts 17:26-27 ESV</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function switchTab(selectedId) {
+            const sections = ['content-psalm', 'content-ua', 'content-en'];
+
+            sections.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    if (id === 'content-' + selectedId) {
+                        el.style.display = 'block';
+                        el.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    } else {
+                        el.style.display = 'none';
+                    }
+                }
+            });
+        }
+    </script>
+
+</body>
+
+</html>
