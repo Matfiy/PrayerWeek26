@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day Six - Prayer Week</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,900&family=Montserrat:wght@300;400;700&family=Oswald:wght@500&display=swap" rel="stylesheet">
+
+    <style>
+        /* ---css reset & variables--- */
+        :root {
+            --accent-yellow: #FFEA00;
+            --text-white: #FFFFFF;
+            --text-grey: #cccccc;
+            --bg-dark: #0d110f;
+            --font-serif: 'Oswald', serif;
+            --font-sans: 'Montserrat', sans-serif;
+            --font-condensed: 'Oswald', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: var(--font-sans);
+            background-color: var(--bg-dark);
+            color: var(--text-white);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ---hero section--- */
+        .hero {
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            /* Forest Background - Day 6 */
+            background-image: url('https://tithely-media-prod.s3.us-west-1.wasabisys.com/1094082/Day-6-Background.png');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(18, 28, 22, 0.4), rgba(13, 17, 15, 1));
+            z-index: 1;
+        }
+
+        .logo,
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo {
+            position: absolute;
+            top: 30px;
+            left: 20px;
+            font-family: var(--font-condensed);
+            color: var(--accent-yellow);
+            font-size: 1.2rem;
+            line-height: 1;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-align: left;
+        }
+
+        .subtitle-top {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: -5px;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+
+        .main-title {
+            font-family: var(--font-serif);
+            font-size: 22vw;
+            line-height: 0.85;
+            color: var(--accent-yellow);
+            margin: 10px 0;
+            text-transform: uppercase;
+            font-weight: 900;
+            text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .subtitle-bottom {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 15px;
+            font-weight: 300;
+            opacity: 0.85;
+            max-width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ---buttons--- */
+        .lang-controls {
+            margin-top: 40px;
+            display: flex;
+            flex-wrap: wrap;
+            /* Allows wrapping */
+            gap: 15px;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-lang {
+            background: transparent;
+            border: 1px solid var(--accent-yellow);
+            color: var(--accent-yellow);
+            padding: 12px 24px;
+            font-family: var(--font-condensed);
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex: 1;
+            min-width: 120px;
+        }
+
+        /* Full width button class */
+        .btn-full {
+            flex-basis: 100%;
+        }
+
+        .btn-lang:active {
+            background: var(--accent-yellow);
+            color: #000;
+        }
+
+        /* ---content section--- */
+        .content-section {
+            padding: 40px 20px 80px 20px;
+            background-color: var(--bg-dark);
+            min-height: 60vh;
+        }
+
+        /* Hide English by default */
+        #content-en {
+            display: none;
+        }
+
+        .topic {
+            margin-bottom: 50px;
+        }
+
+        .topic-title {
+            font-family: var(--font-serif);
+            color: var(--accent-yellow);
+            font-size: 2rem;
+            margin-bottom: 15px;
+            margin-top: 0;
+            line-height: 1.1;
+        }
+
+        .topic-desc {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            font-weight: 400;
+            color: #ddd;
+        }
+
+        .refs {
+            color: #999;
+            font-size: 0.9em;
+            display: block;
+            margin-top: 5px;
+        }
+
+        .verse-block {
+            border-left: 3px solid var(--accent-yellow);
+            padding-left: 15px;
+            margin-bottom: 35px;
+        }
+
+        .scripture {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 1.15rem;
+            line-height: 1.5;
+            margin: 0 0 12px 0;
+            color: #ececec;
+        }
+
+        .citation {
+            font-family: var(--font-condensed);
+            font-size: 0.85rem;
+            color: var(--accent-yellow);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .divider {
+            border: 0;
+            height: 1px;
+            background: #333;
+            margin: 40px 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <section class="hero">
+        <div class="overlay"></div>
+
+        <div class="logo">
+            PRAYER<br>WEEK
+        </div>
+
+        <div class="hero-content">
+            <p class="subtitle-top">МОЛИТВА ПРО МІСТО</p>
+            <h1 class="main-title">DAY<br>SIX</h1>
+            <p class="subtitle-bottom">САКРАМЕНТО, ЦЕРКВИ ТА СВІДОЦТВО</p>
+
+            <div class="lang-controls">
+                <button class="btn-lang" onclick="switchTab('ua')">УКРАЇНСЬКА</button>
+                <button class="btn-lang" onclick="switchTab('en')">ENGLISH</button>
+                <button class="btn-lang btn-full" onclick="switchTab('psalm')">ЩОДЕННИЙ ПСАЛОМ / DAILY PSALM</button>
+            </div>
+        </div>
+    </section>
+
+    <div id="content-psalm" class="content-section">
+        <div class="topic">
+            <h2 class="topic-title">ПСАЛМИ 119:161-176</h2>
+            <div class="verse-block">
+                <p class="scripture">"Можновладці без причини переслідують мене, але в своєму серці я відчуваю страх лише перед Твоїм словом. Радію я Твоїм обітницям, як той, хто натрапив на велику здобич. Я зненавидів неправду, і вона стала мені огидною, а Твій Закон я люблю. Сім разів на день я величаю Тебе за Твої справедливі присуди! Великий мир у тих, що люблять Твій Закон! Вони не спотикатимуться. Я очікую на Твоє спасіння, Господи , і дотримуюсь Твоїх Заповідей. Шанує моя душа Твої свідчення, і надзвичайно любить їх. Я виконую Твої Заповіді й Твої свідчення, адже вся моя життєва дорога перед Тобою. Господи , нехай же моє благання дійде до Тебе! Наділи мене розумом за Твоїм словом! Нехай моя молитва долине до Тебе! Спаси мене за Твоєю обітницею! Хай мої уста заспівають пісню хвали, адже Ти мене навчаєш Своїх постанов! Мій язик оспівуватиме слово Твоє, оскільки всі Твої Заповіді праведні. Нехай Твоя рука підтримає мене, тому що я обрав Твої Заповіді! Я прагну Твого спасіння, Господи , і Твій Закон – моя насолода. Тож нехай буде живою моя душа, щоб прославляти Тебе, а Твої присуди нехай мені допомагають! Я заблукав, як загублена вівця. Тож відшукай Свого слугу, бо я не забув Твоїх Заповідей!"</p>
+                <p class="citation">ПСАЛМИ 119:161-176 CUV</p>
+            </div>
+        </div>
+
+        <div class="topic">
+            <h2 class="topic-title">Psalm 119:161-176</h2>
+            <div class="verse-block">
+                <p class="scripture">"' Princes persecute me without cause, but my heart stands in awe of your words. I rejoice at your word like one who finds great spoil. I hate and abhor falsehood, but I love your law. Seven times a day I praise you for your righteous rules. Great peace have those who love your law; nothing can make them stumble. I hope for your salvation, O Lord , and I do your commandments. My soul keeps your testimonies; I love them exceedingly. I keep your precepts and testimonies, for all my ways are before you. Let my cry come before you, O Lord ; give me understanding according to your word! Let my plea come before you; deliver me according to your word. My lips will pour forth praise, for you teach me your statutes. My tongue will sing of your word, for all your commandments are right. Let your hand be ready to help me, for I have chosen your precepts. I long for your salvation, O Lord , and your law is my delight. Let my soul live and praise you, and let your rules help me. I have gone astray like a lost sheep; seek your servant, for I do not forget your commandments."</p>
+                <p class="citation">Psalm 119:161-176 ESV</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="content-ua" class="content-section" style="display:none;">
+
+        <div class="topic">
+            <h2 class="topic-title">Молитва про Сакраменто і околиці</h2>
+            <p class="topic-desc">Про Господнє благословення для співмешканців, про ефективну працю муніципальних службовців і служб, про підприємців і робочі місця. <span class="refs">(Єр. 29,7)</span></p>
+
+            <div class="verse-block">
+                <p class="scripture">«Дбайте про спокій міста, в яке Я вас виселив, і моліться за нього Господу, оскільки за його добробуту і вам буде добре.»</p>
+                <p class="citation">ЄРЕМІЇ 29:7 CUV</p>
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <div class="topic">
+            <h2 class="topic-title">Молитва про помісні церкви і всіх віруючих</h2>
+            <p class="topic-desc">Про всіх віруючих — щоб слава Христу зростала через життя, свідоцтво і щоденну старанну працю віруючих, щоб турбота церков про емігрантів і людей в будь якій потребі було світлом Ісусової любові. <span class="refs">(Мт. 5,13-16)</span></p>
+
+            <div class="verse-block">
+                <p class="scripture">«Ви – сіль землі. Якщо сіль втратить силу, то як зробити її солоною? Нінащо вона вже не буде більше придатна, хіба щоб викинути геть, аби топтали її люди. Ви – світло для світу. Не можна сховати міста, що стоїть на горі. І не запалюють світильника, аби поставити його під посудину, але ставлять на свічник, щоби світив усім, хто в домі. Тож нехай сяє ваше світло перед людьми, щоб вони побачили ваші добрі діла й прославили Отця вашого, Який на небесах.»</p>
+                <p class="citation">МАТВІЯ 5:13-16 CUV</p>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="content-en" class="content-section" style="display:none;">
+        <div class="topic">
+            <h2 class="topic-title">Prayer for Sacramento</h2>
+            <p class="topic-desc">Prayer for the Lord's blessing on neighbors/fellow residents, for effective work of municipal employees and services, for entrepreneurs and workplaces.</p>
+
+            <div class="verse-block">
+                <p class="scripture">"But seek the welfare of the city where I have sent you into exile, and pray to the Lord on its behalf, for in its welfare you will find your welfare."</p>
+                <p class="citation">Jeremiah 29:7 ESV</p>
+            </div>
+        </div>
+
+        <div class="topic">
+            <h2 class="topic-title">Prayer for Local Churches and all Christians</h2>
+            <p class="topic-desc">Prayer that glory to Christ would grow through the life, witness and daily diligent work of believers, that the care of churches for immigrants and people in any need would be the light of Jesus' love</p>
+            <div class="verse-block">
+                <p class="scripture">"“You are the salt of the earth, but if salt has lost its taste, how shall its saltiness be restored? It is no longer good for anything except to be thrown out and trampled under people’s feet. “You are the light of the world. A city set on a hill cannot be hidden. Nor do people light a lamp and put it under a basket, but on a stand, and it gives light to all in the house. In the same way, let your light shine before others, so that they may see your good works and give glory to your Father who is in heaven."</p>
+                <p class="citation">Matthew 5:13-16 ESV</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function switchTab(selectedId) {
+            const sections = ['content-psalm', 'content-ua', 'content-en'];
+
+            sections.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    if (id === 'content-' + selectedId) {
+                        el.style.display = 'block';
+                        el.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    } else {
+                        el.style.display = 'none';
+                    }
+                }
+            });
+        }
+    </script>
+
+</body>
+
+</html>
