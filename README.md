@@ -1,7 +1,7 @@
-# PrayerWeek26
+# Prayer Week 2026
 Series of simple webpages created to guide users during Prayer Week at FUEBC
 
-Using inline CSS and JavaScript due to the lack of a file managment system when creating these mobile webpages
+Using inline CSS and JavaScript due to the lack of a file managment system when creating these mobile webpages with Tithe.ly Apps.
 
 Example:
 
